@@ -1,3 +1,5 @@
+// https://redux.js.org/api/combinereducers
+// customatizationReducer is created afterwards it is combined
 // project imports
 import config from 'config';
 

@@ -67,9 +67,11 @@ const MainLayout = () => {
     const theme = useTheme();
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
     // Handle left drawer
-    const leftDrawerOpened = useSelector((state) => state.customization.opened); // Get the customization initalized state, frontend\src\store\reducer.js
+    // Get the customization initalized state, frontend\src\store\reducer.js
     const dispatch = useDispatch();
-    const handleLeftDrawerToggle = () => { // Mutator method
+    const leftDrawerOpened = useSelector((state) => state.customization.opened);
+    // Mutator method
+    const handleLeftDrawerToggle = () => {
         dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
     };
 

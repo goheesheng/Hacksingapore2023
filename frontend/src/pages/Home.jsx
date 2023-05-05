@@ -31,7 +31,7 @@ const DropDown = ({ currentMode }) => (
   </div>
 );
 
-const Ecommerce = () => {
+const Home = () => {
   const { currentColor, currentMode } = useStateContext();
 
   return (
@@ -395,4 +395,4 @@ const Ecommerce = () => {
   );
 };
 
-export default Ecommerce;
+export default Home;

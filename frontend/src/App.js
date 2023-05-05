@@ -5,7 +5,7 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import {
-  Ecommerce,
+  Home,
   Orders,
   Calendar,
   Employees,
@@ -24,9 +24,22 @@ import {
 } from './pages';
 import './App.css';
 
+import { useConnect, useAccount, useDisconnect } from 'wagmi';
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
+
 import { useStateContext } from './contexts/ContextProvider';
 
 const App = () => {
+  const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
+  const { connect } = useConnect({
+    connector: new MetaMaskConnector(),
+  });
+
+  function disconnectAndSetNull() {
+    disconnect();
+  }
+
   const {
     setCurrentColor,
     setCurrentMode,
@@ -62,7 +75,8 @@ const App = () => {
               </button>
             </TooltipComponent>
           </div>
-          {activeMenu ? (
+          { isConnected && (
+          activeMenu ? (
             <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
               <Sidebar />
             </div>
@@ -70,6 +84,7 @@ const App = () => {
             <div className="w-0 dark:bg-secondary-dark-bg">
               <Sidebar />
             </div>
+          )
           )}
           <div
             className={
@@ -86,8 +101,8 @@ const App = () => {
 
               <Routes>
                 {/* dashboard  */}
-                <Route path="/" element={<Ecommerce />} />
-                <Route path="/ecommerce" element={<Ecommerce />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/Home" element={<Home />} />
 
                 {/* pages  */}
                 <Route path="/orders" element={<Orders />} />

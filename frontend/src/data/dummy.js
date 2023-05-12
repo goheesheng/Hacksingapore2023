@@ -689,7 +689,7 @@ export const earningData = [
 export const recentTransactions = [
   {
     icon: <BsCurrencyDollar />,
-    amount: '+$350',
+    amount: '+$310',
     title: 'Paypal Transfer',
     desc: 'Money Added',
     iconColor: '#03C9D7',

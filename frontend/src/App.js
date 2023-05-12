@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
@@ -49,6 +49,12 @@ const App = () => {
     themeSettings,
     setThemeSettings,
   } = useStateContext();
+
+  const [name, setName] = useState("...");
+  const [balance, setBalance] = useState("...");
+  const [dollars, setDollars] = useState("...");
+  const [history, setHistory] = useState(null);
+  const [requests, setRequests] = useState({ "1": [0], "0": [] });
 
   useEffect(() => {
     const currentThemeColor = localStorage.getItem('colorMode');

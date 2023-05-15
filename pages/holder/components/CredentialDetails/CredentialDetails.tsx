@@ -6,18 +6,24 @@ import { MortarBoardIcon } from 'assets/mortar-board-icon'
 import * as S from './CredentialDetails.styled'
 
 export type CredentialDetailsProps = {
-  courseTitle: string
-  studentName: string
-  institution: string
-  dateOfCompletion: string
+  Owner: string
+  PropertyAddress: string
+  UnitNo: string
+  PostalCode: number 
+  Lease: number
+  Email: string
+  dateOfPurchase: string
   qrCode: string
 }
 
 export const CredentialDetails: FC<CredentialDetailsProps> = ({
-  courseTitle,
-  studentName,
-  institution,
-  dateOfCompletion,
+  Owner,
+  PropertyAddress,
+  UnitNo,
+  PostalCode,
+  Lease,
+  Email,
+  dateOfPurchase,
   qrCode,
 }) => (
   <S.DetailsCard>
@@ -26,19 +32,22 @@ export const CredentialDetails: FC<CredentialDetailsProps> = ({
 
       <S.DataCardInnerContainer justifyContent='space-between'>
         <div className='grid grid-row-3 sm:grid-row-4'>
-          <S.Data variant='h5'>{courseTitle}</S.Data>
-          <S.Data variant='s1'>{studentName}</S.Data>
+          <S.Data variant='h5'>{Owner}</S.Data>
+          <S.Data variant='s1'>{PropertyAddress}</S.Data>
         </div>
 
         <div className='grid sm:grid-cols-2 gap-y-7'>
           <div className='grid'>
-            <Typography variant='p3'>Issuing institution</Typography>
-            <S.Data variant='p4'>{institution}</S.Data>
+            <Typography variant='p3'>Property Details:</Typography>
+            <S.Data variant='p4'>{UnitNo}</S.Data>
+            <S.Data variant='p4'>{PostalCode}</S.Data>
+            <S.Data variant='p4'>{Lease}</S.Data>
+            <S.Data variant='p4'>{Email}</S.Data>
           </div>
 
           <div className='grid'>
-            <Typography variant='p3'>Date of completion</Typography>
-            <S.Data variant='p4'>{dateOfCompletion}</S.Data>
+            <Typography variant='p3'>Date of purchase</Typography>
+            <S.Data variant='p4'>{dateOfPurchase}</S.Data>
           </div>
         </div>
       </S.DataCardInnerContainer>

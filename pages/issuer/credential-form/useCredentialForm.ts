@@ -12,19 +12,23 @@ export const adjustForUTCOffset = (date: Date) => {
 }
 
 export type CredentialSubjectData = {
-  courseTitle: string
-  institution: string
-  dateOfCompletion: string
-  name: string
-  email: string
+  Owner: string
+  PropertyAddress: string
+  UnitNo: string
+  PostalCode: string 
+  Lease: string
+  Email: string
+  dateOfPurchase: string
 }
 
 export const initialValues: CredentialSubjectData = {
-  courseTitle: '',
-  institution: '',
-  dateOfCompletion: '',
-  name: '',
-  email: '',
+  Owner: '',
+  PropertyAddress: '',
+  UnitNo: '',
+  PostalCode: '',
+  Lease: '',
+  Email: '',
+  dateOfPurchase: '',
 }
 
 export const useCredentialForm = () => {
@@ -33,18 +37,19 @@ export const useCredentialForm = () => {
 
   const handleSubmit = (values: CredentialSubjectData) => {
     mutate({
-      targetEmail: values.email ,
+      targetEmail: values.Email ,
       credentialSubject: {
-        dateOfCompletion: format(
-          adjustForUTCOffset(new Date(values.dateOfCompletion)),
+        dateOfPurchase: format(
+          adjustForUTCOffset(new Date(values.dateOfPurchase)),
           'yyyy-MM-dd'
         ),
-        courseTitle: values.courseTitle,
-        institution: values.institution,
-        student: {
-          name: values.name,
-          email: values.email,
-        },
+        Owner: values.Owner,
+        PropertyAddress: values.PropertyAddress,
+        UnitNo: values.UnitNo,
+        PostalCode: values.PostalCode,
+        Lease: values.Lease,
+        Email: values.Email,
+
       },
     })
   }
@@ -58,26 +63,34 @@ export const useCredentialForm = () => {
   const validate = useCallback((values: CredentialSubjectData) => {
     const errors = {} as Partial<CredentialSubjectData>
 
-    if (!values.courseTitle) {
-      errors.courseTitle = 'Mandatory field'
+    if (!values.Owner) {
+      errors.Owner = 'Mandatory field'
     }
 
-    if (!values.institution) {
-      errors.institution = 'Mandatory field'
+    if (!values.PropertyAddress) {
+      errors.PropertyAddress = 'Mandatory field'
     }
 
-    if (!values.dateOfCompletion) {
-      errors.dateOfCompletion = 'Mandatory field'
+    if (!values.dateOfPurchase) {
+      errors.dateOfPurchase = 'Mandatory field'
     }
 
-    if (!values.name) {
-      errors.name = 'Mandatory field'
+    if (!values.UnitNo) {
+      errors.UnitNo = 'Mandatory field'
     }
 
-    if (!values.email) {
-      errors.email = 'Mandatory field'
-    } else if (!EmailValidator.validate(values.email)) {
-      errors.email = 'Invalid email'
+    if (!values.PostalCode) {
+      errors.PostalCode = 'Mandatory field'
+    }
+    
+    if (!values.Lease) {
+      errors.Lease = 'Mandatory field'
+    }
+
+    if (!values.Email) {
+      errors.Email = 'Mandatory field'
+    } else if (!EmailValidator.validate(values.Email)) {
+      errors.Email = 'Invalid Email'
     }
 
     return errors

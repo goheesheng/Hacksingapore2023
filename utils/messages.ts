@@ -14,7 +14,7 @@ export const messages = {
     },
   },
   verifier: {
-    welcome: 'Welcome to the StudID scanner. Tap “scan QR code” to start checking certificates.',
+    welcome: 'Welcome to the SBC scanner. Tap “scan QR code” to start checking certificates.',
     result: {
       valid: 'Certificate successfully checked.',
       invalid: 'Certificate is invalid.',

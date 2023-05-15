@@ -1,4 +1,4 @@
-# Certification & Verification – an Affinidi reference app
+# Certification & Verification
 
 This is a ready-to-use reference app that showcases usage of Affinidi API for issuing, sharing, verifying and storing verifiable credentials in the wallet.
 
@@ -19,9 +19,7 @@ The app has multiple implementations which are designed for industry-specific us
 Setting up the reference app is easy, just follow these steps:  
 1. Clone the repo:
     ```
-    $ git clone git@github.com:affinidi/reference-app-certification-and-verification.git
-    $ cd reference-app-certification-and-verification
-    $ cd use-cases/education
+    $ git clone https://github.com/goheesheng/Hacksingapore2023.gitreference-app-certification-and-verification.git
     ```
 2. Install the dependencies:
     ```
@@ -51,29 +49,14 @@ Setting up the reference app is easy, just follow these steps:
 We have created multiple implementations of the same app for you to use.  
 These are called "use cases" and they're adapted for a specific industry.
 
-### "Ticketing" use case
 
-> Issue, verify and store tickets for events, such as concerts, conferences, meetups, etc.
-
-As a ticket seller (issuer), you can enter details of the event and generate a ticket for a participant (holder).  
-The concert attendee (holder) can then store that ticket in their wallet and share it as a QR code with the security guard at the entrance of the event (verifier).  
-When the event starts, security guard (verifier) can quickly verify that the ticket is valid by scanning the QR code.
-
-### "Health" use case
-
-> Issue, verify and store prescriptions for medications.
-
-As a doctor (issuer), you can enter details of the medications (dosage, frequency, etc.) and generate a prescription for a patient (holder).  
-The patient (holder) can then store that prescription in their wallet and share it as a QR code with the pharmacist when collecting their medications from the pharmacy (verifier).  
-The pharmacist (verifier) can quickly verify that the prescription is valid by scanning the QR code.
-
-### "Education" use case
+### "Property" use case
 
 > Issue, verify and store course certificates.
 
-As an educational institute (issuer), you can enter details of a certification and generate a certificate for a student (holder).  
+As an Estate Agency (issuer), you can enter details of a certification and generate a certificate for the owner (holder).  
 The student (holder) can then store that certificate in their wallet and share it as a QR code with a recruiter or interviewer (verifier).  
-A recruiter or interviewer (verifier) can quickly verify that the certificate is valid by scanning the QR code.
+A potential buyer or Anti-Fraud Government Agency (verifier) can quickly verify that the certificate is valid by scanning the QR code.
 
 ## Flows
 
@@ -81,7 +64,7 @@ There are three flows in the app: **issuer**, **verifier** and **holder**.
 
 ### Issuer flow
 
-1. Authenticate into your Affinidi account,
+1. Authenticate into your Issuer account,
 2. Enter credential subject details and holder information,
 3. Click "Issue".
 
@@ -134,98 +117,6 @@ _This app uses the Affinidi Cloud Wallet API for authentication, holder credenti
 _This app uses the Affinidi VC Issuance API for performing the Claim Flow._
 
 Learn more about [VCs](https://academy.affinidi.com/what-are-verifiable-credentials-79f1846a7b9), [trust triangle](https://academy.affinidi.com/what-is-the-trust-triangle-9a9caf36b321) and [Decentralized Identifiers (DIDs)](https://academy.affinidi.com/demystifying-decentralized-identifiers-dids-2dc6fc3148fd).
-
-## Overview diagrams
-
-> You might want to install [an extension](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid) to view these Mermaid diagrams.
-
-> We'll use "Health" use case as an example.
-
-### Issuer flow
-
-#### Issue a credential
-
-```mermaid
-sequenceDiagram; autonumber
-  actor Issuer
-  participant App
-  participant Issuance as Issuance API
-  participant IW as Issuer's Wallet
-  actor Holder
-
-  Issuer->>App: Enters medicine (name, dosage, frequency)<br/>and patient details (name, email)
-  App->>Issuance: Initiates claim flow with provided details<br/>and patient's email (holder)
-  Issuance->>Issuance: Stores the offer with provided details (credential subject)
-  Issuance-->>IW: Generates a credential offer request token
-  IW-->>Issuance: Credential offer request token
-  Issuance-->>Holder: Sends an email with a claim link including the credential offer request token
-  Issuance->>App: (ok)
-  App->>Issuer: (ok)
-```
-
-### Holder flow
-
-#### Claim a credential
-
-```mermaid
-sequenceDiagram; autonumber
-  actor Holder
-  participant App
-  participant HW as Holder's Wallet
-  participant Issuance as Issuance API
-  participant IW as Issuer's Wallet
-
-  Holder->>App: Follows the claim link
-  App->>HW: Claim the credential<br/>with the credential offer request token
-  HW->>HW: Generate a credential offer response token<br/>with the holder's DID
-  HW->>Issuance: Claim VC using the credential offer response token
-  Issuance-->>Issuance: Build the VC with Holder's DID<br/>and provided credential subject
-  Issuance-->>IW: Sign the VC
-  IW-->>Issuance: Signed VC
-  Issuance->>HW: Signed VC
-  HW->>HW: Store the VC
-  HW->>App: (ok)
-  App->>Holder: Show the claimed VC
-```
-
-#### Share a credential
-
-```mermaid
-sequenceDiagram
-  autonumber
-
-  actor Holder
-  participant App
-  participant HW as Holder's Wallet
-
-  Holder->>App: Select a VC to share
-  App->>HW: Generate a QR code for sharing the VC
-  HW->>App: QR code
-  App->>Holder: Show the QR code
-```
-
-### Verifier flow
-
-#### Verify the credential
-
-```mermaid
-sequenceDiagram
-  autonumber
-
-  actor Holder
-  actor Verifier
-  participant App
-  participant CW as Cloud Wallet
-  participant VerifierAPI as Verifier API
-
-  Holder-->>Verifier: Show the QR code
-  Verifier->>App: Scan the QR code<br/>and extract credential share token
-  App->>CW: Fetch the shared VC<br/>using the credential share token
-  CW->>App: Shared VC
-  App->>VerifierAPI: Verify the VC
-  VerifierAPI->>App: Verification result
-  App->>Verifier: Verification result
-```
 
 ## Tools & frameworks
 

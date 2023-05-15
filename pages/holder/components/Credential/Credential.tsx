@@ -51,13 +51,16 @@ const getDetails = ({
     return (
       qrCode && (
         <CredentialDetails
-          courseTitle={detailsObject.courseTitle}
-          studentName={detailsObject.student.name}
-          dateOfCompletion={format(
-            new Date(detailsObject.dateOfCompletion),
+          Owner={detailsObject.Owner}
+          PropertyAddress={detailsObject.PropertyAddress}
+          UnitNo={detailsObject.UnitNo}
+          PostalCode={detailsObject.PostalCode}
+          Lease={detailsObject.Lease}
+          dateOfPurchase={format(
+            new Date(detailsObject.dateOfPurchase),
             'dd.MM.yyyy'
           )}
-          institution={detailsObject.institution}
+          Email={detailsObject.Email}
           qrCode={qrCode}
         />
       )

@@ -55,99 +55,132 @@ const CredentialForm: FC = () => {
 
                   <div className='grid lg:grid-cols-2 lg:gap-x-8'>
                     <S.InputWrapper
-                      label='Course title'
-                      placeholder='Enter course title'
-                      name='courseTitle'
+                      label='Owner Name'
+                      placeholder="Enter Owner's Name"
+                      name='Owner'
                       maxLength={100}
-                      value={formikProps.values.courseTitle}
+                      value={formikProps.values.Owner}
                       onChange={(_, event) => formikProps.handleChange(event)}
                       hasError={
-                        formikProps.touched.courseTitle
-                          ? Boolean(formikProps.errors.courseTitle)
+                        formikProps.touched.Owner
+                          ? Boolean(formikProps.errors.Owner)
                           : false
                       }
                       helpText={
-                        formikProps.touched.courseTitle
-                          ? formikProps.errors.courseTitle
+                        formikProps.touched.Owner
+                          ? formikProps.errors.Owner
                           : ''
                       }
                       onBlur={formikProps.handleBlur}
                     />
                     <S.InputWrapper
-                      label='Issuing institution'
-                      placeholder='Issuing institution'
-                      name='institution'
+                      label='Property Address'
+                      placeholder="Enter Owner's Property Address"
+                      name='PropertyAddress'
                       maxLength={500}
-                      value={formikProps.values.institution}
+                      value={formikProps.values.PropertyAddress}
                       onChange={(_, event) => formikProps.handleChange(event)}
                       hasError={
-                        formikProps.touched.institution
-                          ? Boolean(formikProps.errors.institution)
+                        formikProps.touched.PropertyAddress
+                          ? Boolean(formikProps.errors.PropertyAddress)
                           : false
                       }
                       helpText={
-                        formikProps.touched.institution
-                          ? formikProps.errors.institution
+                        formikProps.touched.PropertyAddress
+                          ? formikProps.errors.PropertyAddress
                           : ''
                       }
                       onBlur={formikProps.handleBlur}
                     />
                     <S.InputWrapper
-                      label='Date of completion'
-                      name='dateOfCompletion'
+                      label='Date of purchase'
+                      name='dateOfPurchase'
                       type='date'
-                      value={formikProps.values.dateOfCompletion}
+                      value={formikProps.values.dateOfPurchase}
                       onChange={(_, event) => formikProps.handleChange(event)}
                       hasError={
-                        formikProps.touched.dateOfCompletion
-                          ? Boolean(formikProps.errors.dateOfCompletion)
+                        formikProps.touched.dateOfPurchase
+                          ? Boolean(formikProps.errors.dateOfPurchase)
                           : false
                       }
                       helpText={
-                        formikProps.touched.dateOfCompletion
-                          ? formikProps.errors.dateOfCompletion
+                        formikProps.touched.dateOfPurchase
+                          ? formikProps.errors.dateOfPurchase
+                          : ''
+                      }
+                      onBlur={formikProps.handleBlur}
+                    />
+                    <S.InputWrapper
+                      label='Postal Code'
+                      placeholder="Enter Owner's Postal Code"
+                      name='PostalCode'
+                      maxLength={500}
+                      value={formikProps.values.PostalCode}
+                      onChange={(_, event) => formikProps.handleChange(event)}
+                      hasError={
+                        formikProps.touched.PostalCode
+                          ? Boolean(formikProps.errors.PostalCode)
+                          : false
+                      }
+                      helpText={
+                        formikProps.touched.PostalCode
+                          ? formikProps.errors.PostalCode
                           : ''
                       }
                       onBlur={formikProps.handleBlur}
                     />
                   </div>
-
-                  <S.Heading variant='h6'>Student information</S.Heading>
-
                   <div className='grid lg:grid-cols-2 lg:gap-x-8'>
-                    <S.InputWrapper
-                      label='Student name'
-                      name='name'
+                  <S.InputWrapper
+                      label='Lease (Years)'
+                      name='Lease'
                       maxLength={100}
-                      placeholder='Enter Student name'
-                      value={formikProps.values.name}
+                      placeholder='Enter Lease'
+                      value={formikProps.values.Lease}
                       onChange={(_, event) => formikProps.handleChange(event)}
                       hasError={
-                        formikProps.touched.name
-                          ? Boolean(formikProps.errors.name)
+                        formikProps.touched.Lease
+                          ? Boolean(formikProps.errors.Lease)
                           : false
                       }
                       helpText={
-                        formikProps.touched.name ? formikProps.errors.name : ''
+                        formikProps.touched.Lease ? formikProps.errors.Lease : ''
                       }
                       onBlur={formikProps.handleBlur}
                     />
                     <S.InputWrapper
-                      label='Student email'
-                      name='email'
-                      type='email'
-                      placeholder='Enter student email'
+                      label='Unit Number'
+                      name='UnitNo'
                       maxLength={100}
-                      value={formikProps.values.email}
+                      placeholder='Enter Unit Number'
+                      value={formikProps.values.UnitNo}
                       onChange={(_, event) => formikProps.handleChange(event)}
                       hasError={
-                        formikProps.touched.email
-                          ? Boolean(formikProps.errors.email)
+                        formikProps.touched.UnitNo
+                          ? Boolean(formikProps.errors.UnitNo)
                           : false
                       }
                       helpText={
-                        formikProps.touched.email
-                          ? formikProps.errors.email
+                        formikProps.touched.UnitNo ? formikProps.errors.UnitNo : ''
+                      }
+                      onBlur={formikProps.handleBlur}
+                    />
+                    <S.InputWrapper
+                      label="Owner's Email"
+                      name='Email'
+                      type='email'
+                      placeholder="Enter Owner's Email"
+                      maxLength={100}
+                      value={formikProps.values.Email}
+                      onChange={(_, event) => formikProps.handleChange(event)}
+                      hasError={
+                        formikProps.touched.Email
+                          ? Boolean(formikProps.errors.Email)
+                          : false
+                      }
+                      helpText={
+                        formikProps.touched.Email
+                          ? formikProps.errors.Email
                           : ''
                       }
                       onBlur={formikProps.handleBlur}

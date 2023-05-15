@@ -18,12 +18,13 @@ const CredentialCard: FC<CredentialCardProps> = ({ vc }) => {
   const router = useRouter()
 
   const credential = {
-    title: vc?.credentialSubject?.courseTitle,
+    title: vc?.credentialSubject?.Owner,
     date: format(
-      new Date(vc?.credentialSubject?.dateOfCompletion),
+      new Date(vc?.credentialSubject?.dateOfPurchase),
       'dd.MM.yyyy'
     ),
-    institution: vc?.credentialSubject?.institution,
+    Owner: vc?.credentialSubject?.Owner,
+    PropertyAddress: vc?.credentialSubject?.PropertyAddress,
     credentialId: vc?.id,
   }
 
@@ -40,7 +41,8 @@ const CredentialCard: FC<CredentialCardProps> = ({ vc }) => {
           </S.MortarBoardHatIconContainer>
 
           <Typography variant='h6'>{credential.title}</Typography>
-          <Typography variant='s2'>{credential.institution}</Typography>
+          <Typography variant='s1'>{credential.Owner}</Typography>
+          <Typography variant='s2'>{credential.PropertyAddress}</Typography>
         </Box>
 
         <Box direction='row' gap={8}>

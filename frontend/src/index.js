@@ -1,31 +1,32 @@
-import { createRoot } from 'react-dom/client';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// third party
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import './index.css';
+import App from './App';
+import { ContextProvider } from './contexts/ContextProvider';
 
-// project imports
-import * as serviceWorker from 'serviceWorker';
-import App from 'App';
-import { store } from 'store';
+import { configureChains, mainnet, WagmiConfig, createClient } from 'wagmi';
+import { publicProvider } from 'wagmi/providers/public';
+import { polygonMumbai } from '@wagmi/chains';
 
-// style + assets
-import 'assets/scss/style.scss';
-import config from './config';
-
-// ==============================|| REACT DOM RENDER  ||============================== //
-
-const container = document.getElementById('root');
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
-root.render(
-    <Provider store={store}>
-        <BrowserRouter basename={config.basename}>
-            <App />
-        </BrowserRouter>
-    </Provider>
+const { provider, webSocketProvider } = configureChains(
+  [mainnet, polygonMumbai],
+  [publicProvider()]
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const client = createClient({
+  autoConnect: true,
+  provider,
+  webSocketProvider,
+});
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ContextProvider>
+      <WagmiConfig client={client}>
+        <App />
+      </WagmiConfig>
+    </ContextProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);

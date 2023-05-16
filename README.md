@@ -19,11 +19,13 @@ The app has multiple implementations which are designed for industry-specific us
 Setting up the reference app is easy, just follow these steps:  
 1. Clone the repo:
     ```
-    $ git clone https://github.com/goheesheng/Hacksingapore2023.gitreference-app-certification-and-verification.git
+    $ git clone https://github.com/goheesheng/Hacksingapore2023.git
     ```
 2. Install the dependencies:
     ```
     $ npm install
+    or
+    $ yarn install
     ```
 3. Create a `.env` file:
     ```
@@ -36,6 +38,8 @@ Setting up the reference app is easy, just follow these steps:
 4. Launch the app:
     ```
     $ npm run dev
+    or
+    $ yarn dev
     ```
     
     App will be available locally on http://localhost:3000.

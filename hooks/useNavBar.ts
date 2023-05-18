@@ -13,7 +13,10 @@ export const useNavBar = () => {
   const { mutateAsync } = useLogOutMutation()
   const { push } = useRouter()
 
+  const isAuthorizedAsIssuer = authState.authorizedAsIssuer
+  const isAuthorizedAsHolder = authState.authorizedAsHolder
   const isAuthorized = authState.authorizedAsIssuer || authState.authorizedAsHolder
+
 
   const handleGoHomePage = () => {
     push(ROUTES.home)
@@ -31,5 +34,9 @@ export const useNavBar = () => {
     push(ROUTES.home)
   }, [authState, push, updateAuthState])
 
-  return { isMenuOpen, handleLogOut, setIsMenuOpen, handleGoHomePage, isAuthorized }
+  const handleApplyVC = () => {
+    push(ROUTES.holder.ApplyVc)
+  }
+
+  return { isMenuOpen, handleLogOut, setIsMenuOpen, handleGoHomePage,isAuthorizedAsIssuer,isAuthorizedAsHolder, isAuthorized , handleApplyVC}
 }

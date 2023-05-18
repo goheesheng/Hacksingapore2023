@@ -37,12 +37,12 @@ export const CredentialDetails: FC<CredentialDetailsProps> = ({
         </div>
 
         <div className='grid sm:grid-cols-2 gap-y-7'>
-          <div className='grid'>
+          <div className='grid' style={{ marginTop: '-80px' }}>
             <Typography variant='p3'>Property Details:</Typography>
-            <S.Data variant='p4'>{UnitNo}</S.Data>
-            <S.Data variant='p4'>{PostalCode}</S.Data>
-            <S.Data variant='p4'>{Lease}</S.Data>
-            <S.Data variant='p4'>{Email}</S.Data>
+            <S.Data variant='p4'>Unit Number: {UnitNo}</S.Data>
+            <S.Data variant='p4'>Postal Code: {PostalCode}</S.Data>
+            <S.Data variant='p4'>Lease: {Lease} Years</S.Data>
+            <S.Data variant='p4'>Email: {Email}</S.Data>
           </div>
 
           <div className='grid'>

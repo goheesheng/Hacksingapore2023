@@ -33,6 +33,7 @@ export const ROUTES = {
     confirmSignIn: "/holder/confirm-sign-in",
     credential: "/holder/credential",
     claimVc: "/holder/claim",
+    ApplyVc: "/holder/ApplyVc"
   },
   issuer: {
     logIn: "/issuer/log-in",

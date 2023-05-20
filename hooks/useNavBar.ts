@@ -37,6 +37,10 @@ export const useNavBar = () => {
   const handleApplyVC = () => {
     push(ROUTES.holder.ApplyVc)
   }
+  
+  const handleListVC = () => {
+    push(ROUTES.issuer.listVc)
+  }
 
-  return { isMenuOpen, handleLogOut, setIsMenuOpen, handleGoHomePage,isAuthorizedAsIssuer,isAuthorizedAsHolder, isAuthorized , handleApplyVC}
+  return { isMenuOpen, handleLogOut, setIsMenuOpen, handleGoHomePage,isAuthorizedAsIssuer,isAuthorizedAsHolder, isAuthorized , handleApplyVC, handleListVC}
 }

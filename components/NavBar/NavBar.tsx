@@ -10,7 +10,7 @@ import { wrapInContainer } from './NavBar.theme'
 import * as S from './NavBar.styled'
 
 const NavBar: FC = () => {
-  const { isMenuOpen, setIsMenuOpen, handleLogOut, handleGoHomePage, isAuthorized, isAuthorizedAsHolder, handleApplyVC } = useNavBar()
+  const { isMenuOpen, setIsMenuOpen, handleLogOut, handleGoHomePage, isAuthorized, isAuthorizedAsHolder, isAuthorizedAsIssuer, handleApplyVC, handleListVC } = useNavBar()
   const Wrapper = wrapInContainer ? Container : Fragment
 
   return (
@@ -46,6 +46,11 @@ const NavBar: FC = () => {
       {isAuthorizedAsHolder && (
         <S.ButtonContainer onClick={handleApplyVC}>
           <Typography variant="b1">Apply Verified Credentials</Typography>
+        </S.ButtonContainer>
+      )}
+      {isAuthorizedAsIssuer && (
+        <S.ButtonContainer onClick={handleListVC}>
+          <Typography variant="b1">List Verified Credentials</Typography>
         </S.ButtonContainer>
       )}
     </S.Content>

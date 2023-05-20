@@ -39,5 +39,6 @@ export const ROUTES = {
     logIn: "/issuer/log-in",
     credentialForm: "/issuer/credential-form",
     result: "/issuer/result",
+    listVc: "/issuer/list-vc"
   },
 };

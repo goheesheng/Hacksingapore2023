@@ -83,13 +83,15 @@ function ListAllVc() {
                 </td>
                 <td>{item.metadata.timeCreated}</td>
                 <td>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <ButtonWrapper
                     type="primary"
                     onClick={listOneVcClick}
                     style={{ color: 'white' }}
-                  >
+                >
                     View
-                  </ButtonWrapper>
+                </ButtonWrapper>
+                </div>
                 </td>
               </tr>
             ))}

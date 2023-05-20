@@ -1,14 +1,21 @@
-import { Button, Card, Input, List, message, Image, Progress } from 'antd'
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
-import React, { useState } from 'react'
-import { storage } from '../../../firebaseConfig.ts'
+import { Card, Input, List, message, Image, Progress, Button } from 'antd';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import React, { useState } from 'react';
+import { storage } from '../../../firebaseConfig.ts';
+import { Container, FormContainer, ButtonWrapper, MT5, TextRight } from './upload.styled';
 
 const UploadImageToStorage = () => {
   const [imageFile, setImageFile] = useState<File>()
   const [downloadURL, setDownloadURL] = useState('')
   const [isUploading, setIsUploading] = useState(false)
   const [progressUpload, setProgressUpload] = useState(0)
+  const [formData, setFormData] = useState<{ [key: string]: string }>({});
 
+  const handleFormInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+  
   const handleSelectedFile = (files: any) => {
     if (files && files[0].size < 10000000) {
       setImageFile(files[0])
@@ -21,10 +28,16 @@ const UploadImageToStorage = () => {
 
   const handleUploadFile = () => {
     if (imageFile) {
-      const name = imageFile.name
-      const storageRef = ref(storage, `image/${name}`)
-      const uploadTask = uploadBytesResumable(storageRef, imageFile)
-
+      const name = imageFile.name;
+      const metadata = {
+        contentType: imageFile.type,
+        customMetadata: {
+          title: formData.title || "",
+          description: formData.description || "",
+        },
+      };
+      const storageRef = ref(storage, `image/${name}`);
+      const uploadTask = uploadBytesResumable(storageRef, imageFile, metadata);
       uploadTask.on(
         'state_changed',
         (snapshot) => {
@@ -60,8 +73,8 @@ const UploadImageToStorage = () => {
   const handleRemoveFile = () => setImageFile(undefined)
 
   return (
-    <div className="container mt-5">
-      <div className="col-lg-8 offset-lg-2">
+    <Container>
+      <FormContainer>
         <Input
           type="file"
           placeholder="Select file to upload"
@@ -69,37 +82,42 @@ const UploadImageToStorage = () => {
           onChange={(files) => handleSelectedFile(files.target.files)}
         />
 
-        <div className="mt-5">
+        <MT5>
           <Card>
+            <Input
+              name="title"
+              placeholder="Image Title"
+              value={formData.title || ""}
+              onChange={handleFormInputChange}
+            />
+            <Input
+              name="description"
+              placeholder="Image Description"
+              value={formData.description || ""}
+              onChange={handleFormInputChange}
+            />
+
             {imageFile && (
               <>
-                <List.Item
-                  extra={[
-                    <Button
-                      key="btnRemoveFile"
-                      onClick={handleRemoveFile}
-                      type="text"
-                      icon={<i className="fas fa-times"></i>}
-                    />,
-                  ]}
-                >
+                <List.Item>
                   <List.Item.Meta
                     title={imageFile.name}
                     description={`Size: ${imageFile.size}`}
                   />
                 </List.Item>
 
-                <div className="text-right mt-3">
-                  <Button
+                <TextRight className="mt-3">
+                  <ButtonWrapper
                     loading={isUploading}
                     type="primary"
                     onClick={handleUploadFile}
+                    style={{ backgroundColor: '#4a90e2', color: 'white' }}
                   >
                     Upload
-                  </Button>
+                  </ButtonWrapper>
 
                   <Progress percent={progressUpload} />
-                </div>
+                </TextRight>
               </>
             )}
 
@@ -110,15 +128,24 @@ const UploadImageToStorage = () => {
                   alt={downloadURL}
                   style={{ width: 200, height: 200, objectFit: 'cover' }}
                 />
-                <p>{downloadURL}</p>
+                    <p>
+                    <Button
+                      href={downloadURL}
+                      target="_blank"
+                      size="small"
+                      type="primary"
+                    >
+                      Image Link
+                    </Button>
+                  </p>
               </>
             )}
             <p></p>
           </Card>
-        </div>
-      </div>
-    </div>
-  )
-}
+        </MT5>
+      </FormContainer>
+    </Container>
+  );
+};
 
-export default UploadImageToStorage
+export default UploadImageToStorage;

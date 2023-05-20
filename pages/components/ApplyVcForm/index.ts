@@ -1,1 +1,0 @@
-export { ApplyVcForm } from './ApplyVcForm'

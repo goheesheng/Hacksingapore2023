@@ -45,7 +45,7 @@ Setting up the reference app is easy, just follow these steps:
     App will be available locally on http://localhost:3000.
 
     > Note: To log in as issuer, use these credentials (customizable in the `.env` file):  
-    > Login: **issuer**  
+    > Login: **test@sbc.com**  
     > Password: **test**  
 
 ## App use cases

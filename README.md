@@ -9,8 +9,9 @@ Property Certificate Verification System is a secure and efficient solution for 
 ## Demo Video
 
 
-<a href="https://www.youtube.com/watch?v=6yIVSr5gBks" target="_blank">Youtube Demo Video</a>
-
+<aside>
+    <a href="https://www.youtube.com/watch?v=6yIVSr5gBks" target="_blank">Youtube Demo Video</a>
+</aside>
 
 ## Theme of Submission: Financial Inclusion
 

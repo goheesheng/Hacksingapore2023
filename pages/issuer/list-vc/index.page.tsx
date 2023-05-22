@@ -80,7 +80,7 @@ function ListAllVc() {
             <tr>
               <th style={{ width: '10%' }}>Row Number</th>
               <th style={{ width: '10%' }}>Name</th>
-              <th style={{ width: '20%' }}>Image</th>
+              <th style={{ width: '20%' }}>Document</th>
               <th style={{ width: '20%' }}>Created</th>
               <th style={{ width: '10%' }}>Update</th>
             </tr>
@@ -102,7 +102,7 @@ function ListAllVc() {
 
                 <td>{item.metadata.timeCreated}</td>
                 <td>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <ButtonWrapper
                   type="primary"
                   onClick={() => listOneVcClick(item.downloadURL, item.metadata)}

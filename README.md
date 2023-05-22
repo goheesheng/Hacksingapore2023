@@ -5,6 +5,7 @@ Property Certificate Verification System is a secure and efficient solution for 
 ## Team Members and Contact Information
 
 - Eesheng Goh (GitHub: goheesheng, Email: goheesheng@hotmail.com)
+- Darryl Ng Jun Long (GitHub: Leakmydata, Email: darrylngjl@gmail.com)
 
 ## Demo Video
 

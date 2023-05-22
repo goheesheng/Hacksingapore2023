@@ -1,6 +1,35 @@
-# Certification & Verification
+# Project Description: Property Certificate Verification System
 
-This is a ready-to-use reference app that showcases usage of Affinidi API for issuing, sharing, verifying and storing verifiable credentials in the wallet.
+Property Certificate Verification System is a secure and efficient solution for issuing, verifying, and storing course certificates for properties. It utilizes blockchain technology, verifiable credentials, and QR codes for authentication and easy verification.
+
+## Team Members and Contact Information
+
+- Eesheng Goh (GitHub: goheesheng, Email: goheesheng@hotmail.com)
+
+## Theme of Submission: Financial Inclusion
+
+## Problem Being Addressed
+
+The Property Certificate Verification System addresses the challenge of proving property ownership in the real estate industry. It provides a secure and efficient solution for property owners to issue, verify, and store property certificates. The system simplifies the process of proving ownership by utilizing blockchain technology, verifiable credentials, and QR codes.
+
+ This solution enhances financial access and literacy by ensuring the authenticity and tamper-evident nature of property certificates, increasing consumers' confidence in using digital financial services. It also enables quick verification by potential buyers and anti-fraud government agencies, promoting trust and transparency in property transactions. By addressing these pain points, the system contributes to the overall goal of financial inclusion in the real estate industry.
+
+Therefore, the Property Certificate Verification System aligns with the Financial Inclusion theme by addressing the pain points related to awareness, acceptance, availability, and affordability of existing financial products and services in the real estate industry.
+
+## Future Plans for the Project
+The team plans to enhance the user interface and user experience, add features like document management and property ownership transfer, and explore integration with existing property registration systems or government databases for seamless verification.
+
+## Tech Stack Used by the Team:
+
+- Framework: NextJS (with TypeScript and React)
+- UI Libraries: Styled Components, Tailwind CSS
+- API Requests: Axios
+- Credential Validation: Zod
+- Logging: Pino
+- Blockchain Platform: Ethereum
+- Verifiable Credentials: W3C specification
+- Cloud Wallet and Credential Issuance: Affinidi 
+- Cloud Wallet API
 
 ## Introduction
 

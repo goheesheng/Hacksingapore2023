@@ -38,8 +38,6 @@ Setting up the reference app is easy, just follow these steps:
 4. Launch the app:
     ```
     $ npm run dev
-    or
-    $ yarn dev
     ```
     
     App will be available locally on http://localhost:3000.

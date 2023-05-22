@@ -19,9 +19,14 @@ Therefore, the Property Certificate Verification System aligns with the Financia
 ## Future Plans for the Project
 The team plans to enhance the user interface and user experience, add features like document management and property ownership transfer, and explore integration with existing property registration systems or government databases for seamless verification.
 
+## Security Features
+- Directory Traversal Prevention with Authentication Routes
+- Fraud Detection using QR Codes
+
 ## Tech Stack Used by the Team:
 
 - Framework: NextJS (with TypeScript and React)
+- Database: Firebase
 - UI Libraries: Styled Components, Tailwind CSS
 - API Requests: Axios
 - Credential Validation: Zod
@@ -89,6 +94,10 @@ A potential buyer or Anti-Fraud Government Agency (verifier) can quickly verify 
 
 There are three flows in the app: **issuer**, **verifier** and **holder**.
 
+### Holder flow
+
+1. Submit hardcopy documents
+
 ### Issuer flow
 
 1. Authenticate into your Issuer account,
@@ -144,3 +153,49 @@ _This app uses the Affinidi Cloud Wallet API for authentication, holder credenti
 _This app uses the Affinidi VC Issuance API for performing the Claim Flow._
 
 Learn more about [VCs](https://academy.affinidi.com/what-are-verifiable-credentials-79f1846a7b9), [trust triangle](https://academy.affinidi.com/what-is-the-trust-triangle-9a9caf36b321) and [Decentralized Identifiers (DIDs)](https://academy.affinidi.com/demystifying-decentralized-identifiers-dids-2dc6fc3148fd).
+
+# "Non-Fungible Tokens (NFTs) vs Verifiable Credentials (VCs)"
+
+NFTs and VCs are often confused but have distinct differences.
+
+NFTs are unique and non-interchangeable tokens used to represent digital assets. They prove ownership and authenticity.
+
+VCs are tamper-evident credentials used to verify an entity's identity. They can represent various credentials like PII, university degrees, etc.
+
+![Summary Differences Table](./docs/diff1.png)
+
+![NFTs vs VCs](./docs/diff2.png)
+
+## Similarities
+
+NFTs and VCs include leveraging the benefits of the digital world and providing unique identification.
+
+## Differences:
+
+- Implementation: (VCs use public key infrastructure and digital signatures, while NFTs are based on blockchain) 
+
+- Transferability: (VCs are non-transferable, while NFTs can change ownership),
+
+- Blockchain Implementation: (NFTs are blockchain-specific, while VCs can be implemented on various networks)
+
+- Scarcity/Availability: (NFTs' value depends on scarcity, while VCs' value is unrelated to scarcity)
+
+- Indivisibility: (NFTs are indivisible, while VCs can be divided)
+
+NFTs verify ownership of an object, while VCs uniquely identify an entity. VCs can extend usability beyond a specific network.
+
+Why VCs are better:
+
+- VCs provide tamper-evident credentials that can be cryptographically verified, ensuring authenticity and preventing fraud.
+
+- VCs offer more flexibility in sharing and verifying credentials, allowing entities to prove their claims without compromising sensitive information.
+
+- VCs are not tied to a specific platform, unlike NFTs, which ensures the longevity and accessibility of verified credentials.
+
+- VCs have broader applications beyond digital assets, as they can represent various credentials and enable secure identity verification across different domains.
+
+- VCs can be implemented on different networks, including blockchain and Distributed Ledger Transaction (DLT) networks, providing interoperability and adaptability.
+
+```
+Overall, VCs offer a more robust and versatile solution for identity verification and credential management compared to NFTs, making them a better choice in many contexts.
+```

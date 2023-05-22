@@ -5,6 +5,8 @@ import { getDownloadURL, getMetadata } from 'firebase/storage';
 import { ROUTES } from 'utils'
 import { useRouter } from 'next/router'
 import { ButtonWrapper } from './upload.styled';
+import { stringify } from 'querystring';
+
 function ListAllVc() {
   
   const router = useRouter()
@@ -12,6 +14,13 @@ function ListAllVc() {
   // States for data and image
   const [data, setData] = useState([]);
   const [image, setImage] = useState('');
+
+  const isImageFile = (filename) => {
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
+    const fileExtension = filename.split('.').pop().toLowerCase();
+    return imageExtensions.includes(fileExtension);
+  };
+  
 
   // List All Files
   const listItem = () => {
@@ -39,9 +48,12 @@ function ListAllVc() {
     listItem();
   }, []);
 
-  const listOneVcClick = () => {
-    // Handle button click event here
-    router.push(ROUTES.issuer.listOneVc)
+  const listOneVcClick = (downloadURL, metadata) => {
+    const queryParams = stringify({
+      downloadURL,
+      metadata: JSON.stringify(metadata),
+    });
+    router.push(`${ROUTES.issuer.listOneVc}?${queryParams}`);
   };
 
   return (
@@ -78,25 +90,34 @@ function ListAllVc() {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{item.name}</td>
-                <td style={{ display: 'flex', justifyContent: 'center' }}>
-                  <img src={item.downloadURL} alt={item.name} width="300" />
-                </td>
+                <td style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {isImageFile(item.name) ? (
+                  <img src={item.downloadURL} alt={item.name} width="300" style={{ display: 'block' }} />
+                ) : (
+                  <div style={{ textAlign: 'center', width: '300px' }}>
+                    <span style={{ display: 'block', lineHeight: '6' }}>{item.name}</span>
+                  </div>
+                )}
+              </td>
+
                 <td>{item.metadata.timeCreated}</td>
                 <td>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <ButtonWrapper
-                    type="primary"
-                    onClick={listOneVcClick}
-                    style={{ color: 'white' }}
+                  type="primary"
+                  onClick={() => listOneVcClick(item.downloadURL, item.metadata)}
+                  style={{ color: 'white' }}
                 >
-                    View
+                  View
                 </ButtonWrapper>
+
                 </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        
       </center>
     </div>
   );

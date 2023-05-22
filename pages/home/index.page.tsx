@@ -25,7 +25,7 @@ export const Home: FC = () => {
             direction="row"
             justifyContent="space-between"
             gap={8}
-            onClick={() => router.push(ROUTES.issuer.credentialForm)}
+            onClick={() => router.push(ROUTES.issuer.listVc)}
           >
             <Box gap={16}>
               <Typography variant="h6">{messages.home.issuer.title}</Typography>

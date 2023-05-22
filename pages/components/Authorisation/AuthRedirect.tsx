@@ -51,7 +51,7 @@ export const AuthRedirect: FC<AuthRedirectProps> = ({ children }) => {
           authState.authorizedAsIssuer &&
           route === ROUTES.issuer.logIn
         ) {
-          replace(ROUTES.issuer.credentialForm)
+          replace(ROUTES.issuer.listVc)
         }
       }
 

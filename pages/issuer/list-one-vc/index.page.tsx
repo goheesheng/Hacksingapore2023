@@ -1,54 +1,73 @@
-import { FC, useEffect } from 'react'
-import { Formik } from 'formik'
-
+import React, { FC, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { Formik } from 'formik';
+import { ListOneVcWrapper } from './upload.styled';
+import * as S from './CredentialForm.styled';
+import { Container, Header, Input, Spinner } from 'components'
 import { JSONLD_CONTEXT_URL } from 'utils/schema'
 import { messages } from 'utils/messages'
 import { useAuthContext } from 'hooks/useAuthContext'
-import { Container, Header, Input, Spinner } from 'components'
 import { showErrorToast } from 'utils/notification'
 import { ErrorCodes } from 'enums/errorCodes'
-
 import { initialValues, useCredentialForm } from './useCredentialForm'
-import * as S from './CredentialForm.styled'
 
-interface CredentialFormProps {
+interface MergedComponentProps {
   downloadURL: string;
   metadata: {
     name: string;
     timeCreated: string;
   };
+  isImage: boolean;
 }
 
-const CredentialForm: FC<CredentialFormProps> = ({ downloadURL, metadata }) => {
-  const { authState } = useAuthContext()
-  const { handleSubmit, validate, isCreating, error } = useCredentialForm()
+
+const MergedComponent: FC<MergedComponentProps> = ({
+  downloadURL,
+  metadata,
+  isImage,
+}) => {
+  const router = useRouter();
+  const { authState } = useAuthContext();
+  const { handleSubmit, validate, isCreating, error } = useCredentialForm();
+  const [isFileImage, setIsFileImage] = useState(isImage);
 
   useEffect(() => {
     if (error) {
       if (
         error.response?.data?.error?.code === ErrorCodes.INTERNAL_SERVER_ERROR
       ) {
-        showErrorToast(new Error(messages.issuer.error.apiError))
+        showErrorToast(new Error(messages.issuer.error.apiError));
       } else {
-        showErrorToast(error)
+        showErrorToast(error);
       }
     }
-  }, [error])
+  }, [error]);
 
   if (!authState.authorizedAsIssuer) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   return (
-    <>
-      <Header title='Enter details' />
-
+    <ListOneVcWrapper>
+      
+      <Header title="Enter details" />
       <Container>
-        <div className='grid lg:grid-cols-12'>
-        <S.ImageWrapper>
-          <img src={downloadURL} alt="Selected Image" width="300" />
-        </S.ImageWrapper>
-          <div className='lg:col-span-8 lg:col-start-3'>
+      <div className='grid lg:grid-cols-2 gap-x-8'>
+      <S.ImageWrapper>
+      {isFileImage ? (
+        <img src={downloadURL} alt="Selected Image" width="300" />
+      ) : (
+        <button
+          onClick={() => {
+            window.open(downloadURL, '_blank');
+          }}
+        >
+          Download File
+        </button>
+      )}
+    </S.ImageWrapper>
+
+        <S.FormContainer className='lg:col-span-8 lg:col-start-2'>
             <Formik
               initialValues={initialValues}
               onSubmit={handleSubmit}
@@ -67,7 +86,7 @@ const CredentialForm: FC<CredentialFormProps> = ({ downloadURL, metadata }) => {
                   <div className='grid lg:grid-cols-2 lg:gap-x-8'>
                     <S.InputWrapper
                       label='Owner Name'
-                      placeholder={`Enter Owner's Name${metadata ? ` (${metadata.name})` : ''}`} // Add a conditional check for 'metadata'
+                      placeholder={`Enter Owner's Name`} // Add a conditional check for 'metadata'
                       name='Owner'
                       maxLength={100}
                       value={formikProps.values.Owner}
@@ -198,7 +217,7 @@ const CredentialForm: FC<CredentialFormProps> = ({ downloadURL, metadata }) => {
                     />
                   </div>
 
-                  <div className='grid lg:grid-cols-3'>
+                  <div className='grid lg:grid-cols-1'>
                     <S.ButtonWrapper
                       type='submit'
                       form='form'
@@ -211,11 +230,27 @@ const CredentialForm: FC<CredentialFormProps> = ({ downloadURL, metadata }) => {
                 </form>
               )}
             </Formik>
-          </div>
+          
+        </S.FormContainer>
         </div>
       </Container>
-    </>
-  )
-}
+    </ListOneVcWrapper>
+  );
+};
 
-export default CredentialForm
+MergedComponent.getInitialProps = async ({ query }) => {
+  const { downloadURL, metadata } = query;
+  const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
+  const fileExtension = downloadURL.split('.').pop().toLowerCase();
+
+  try {
+    const isImage = imageExtensions.includes(fileExtension);
+    return { downloadURL, metadata: JSON.parse(metadata), isImage };
+  } catch (error) {
+    console.error('Error parsing metadata:', error);
+    return { downloadURL, metadata: {}, isImage: false };
+  }
+};
+
+
+export default MergedComponent;

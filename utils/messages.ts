@@ -1,7 +1,7 @@
 export const messages = {
   home: {
     holder: {
-      title: 'Collect certificates',
+      title: 'Request & Collect certificates',
       description: 'Collect your certificates or view them stored in your wallet',
     },
     verifier: {

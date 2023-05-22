@@ -10,7 +10,7 @@ import { wrapInContainer } from './NavBar.theme'
 import * as S from './NavBar.styled'
 
 const NavBar: FC = () => {
-  const { isMenuOpen, setIsMenuOpen, handleLogOut, handleGoHomePage, isAuthorized } = useNavBar()
+  const { isMenuOpen, setIsMenuOpen, handleLogOut, handleGoHomePage, isAuthorized, isAuthorizedAsHolder, isAuthorizedAsIssuer, handleApplyVC, handleListVC } = useNavBar()
   const Wrapper = wrapInContainer ? Container : Fragment
 
   return (
@@ -38,14 +38,25 @@ const NavBar: FC = () => {
       </Wrapper>
 
       {isAuthorized && (
-        <Modal open={isMenuOpen} onClose={() => setIsMenuOpen(false)} position="rightSide">
-          <S.Content alignItems="flex-end">
-            <S.ButtonContainer onClick={handleLogOut}>
-              <Typography variant="b1">Log out</Typography>
-            </S.ButtonContainer>
-          </S.Content>
-        </Modal>
+  <Modal open={isMenuOpen} onClose={() => setIsMenuOpen(false)} position="rightSide">
+    <S.Content alignItems="flex-end">
+      <S.ButtonContainer onClick={handleLogOut}>
+        <Typography variant="b1">Log out</Typography>
+      </S.ButtonContainer>
+      {isAuthorizedAsHolder && (
+        <S.ButtonContainer onClick={handleApplyVC}>
+          <Typography variant="b1">Apply Verified Credentials</Typography>
+        </S.ButtonContainer>
       )}
+      {isAuthorizedAsIssuer && (
+        <S.ButtonContainer onClick={handleListVC}>
+          <Typography variant="b1">List Verified Credentials</Typography>
+        </S.ButtonContainer>
+      )}
+    </S.Content>
+  </Modal>
+)}
+
     </>
   )
 }

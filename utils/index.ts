@@ -33,10 +33,13 @@ export const ROUTES = {
     confirmSignIn: "/holder/confirm-sign-in",
     credential: "/holder/credential",
     claimVc: "/holder/claim",
+    ApplyVc: "/holder/ApplyVc"
   },
   issuer: {
     logIn: "/issuer/log-in",
     credentialForm: "/issuer/credential-form",
     result: "/issuer/result",
+    listVc: "/issuer/list-vc",
+    listOneVc:"/issuer/list-one-vc"
   },
 };

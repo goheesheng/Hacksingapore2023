@@ -24,3 +24,11 @@ export const InputWrapper = styled(Input)`
 export const ButtonWrapper = styled(Button)`
   margin: ${pxToRem(40)} 0;
 `
+
+export const FormContainer = styled.div`
+  padding: 0 1rem; // Add horizontal padding
+
+  @media (min-width: 1024px) {
+    padding: 0; // Remove horizontal padding on larger screens
+  }
+`;

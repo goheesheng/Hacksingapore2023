@@ -13,7 +13,7 @@ const IssuanceResult: FC = () => {
     return <Spinner />
   }
 
-  return <Result isValid={true} pathTo={ROUTES.issuer.credentialForm} />
+  return <Result isValid={true} pathTo={ROUTES.issuer.listVc} />
 }
 
 export default IssuanceResult;

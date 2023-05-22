@@ -41,7 +41,6 @@ const CredentialCard: FC<CredentialCardProps> = ({ vc }) => {
           </S.MortarBoardHatIconContainer>
 
           <Typography variant='h6'>{credential.title}</Typography>
-          <Typography variant='s1'>{credential.Owner}</Typography>
           <Typography variant='s2'>{credential.PropertyAddress}</Typography>
         </Box>
 

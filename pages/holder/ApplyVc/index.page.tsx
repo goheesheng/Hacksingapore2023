@@ -84,18 +84,6 @@ const UploadImageToStorage = () => {
 
         <MT5>
           <Card>
-            <Input
-              name="title"
-              placeholder="Image Title"
-              value={formData.title || ""}
-              onChange={handleFormInputChange}
-            />
-            <Input
-              name="description"
-              placeholder="Image Description"
-              value={formData.description || ""}
-              onChange={handleFormInputChange}
-            />
 
             {imageFile && (
               <>
@@ -123,11 +111,6 @@ const UploadImageToStorage = () => {
 
             {downloadURL && (
               <>
-                <Image
-                  src={downloadURL}
-                  alt={downloadURL}
-                  style={{ width: 200, height: 200, objectFit: 'cover' }}
-                />
                     <p>
                     <Button
                       href={downloadURL}
@@ -135,7 +118,7 @@ const UploadImageToStorage = () => {
                       size="small"
                       type="primary"
                     >
-                      Image Link
+                      Document Link
                     </Button>
                   </p>
               </>

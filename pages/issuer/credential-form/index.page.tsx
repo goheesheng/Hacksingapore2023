@@ -11,7 +11,15 @@ import { ErrorCodes } from 'enums/errorCodes'
 import { initialValues, useCredentialForm } from './useCredentialForm'
 import * as S from './CredentialForm.styled'
 
-const CredentialForm: FC = () => {
+interface CredentialFormProps {
+  downloadURL: string;
+  metadata: {
+    name: string;
+    timeCreated: string;
+  };
+}
+
+const CredentialForm: FC<CredentialFormProps> = ({ downloadURL, metadata }) => {
   const { authState } = useAuthContext()
   const { handleSubmit, validate, isCreating, error } = useCredentialForm()
 
@@ -37,6 +45,9 @@ const CredentialForm: FC = () => {
 
       <Container>
         <div className='grid lg:grid-cols-12'>
+        <S.ImageWrapper>
+          <img src={downloadURL} alt="Selected Image" width="300" />
+        </S.ImageWrapper>
           <div className='lg:col-span-8 lg:col-start-3'>
             <Formik
               initialValues={initialValues}
@@ -56,7 +67,7 @@ const CredentialForm: FC = () => {
                   <div className='grid lg:grid-cols-2 lg:gap-x-8'>
                     <S.InputWrapper
                       label='Owner Name'
-                      placeholder="Enter Owner's Name"
+                      placeholder={`Enter Owner's Name${metadata ? ` (${metadata.name})` : ''}`} // Add a conditional check for 'metadata'
                       name='Owner'
                       maxLength={100}
                       value={formikProps.values.Owner}

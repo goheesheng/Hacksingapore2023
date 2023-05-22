@@ -7,6 +7,12 @@ export const Heading = styled(Typography)`
   margin: ${pxToRem(48)} 0 ${pxToRem(24)};
 `
 
+export const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+`;
+
 export const Title = styled(Typography)`
 margin-bottom: ${pxToRem(24)};
 `

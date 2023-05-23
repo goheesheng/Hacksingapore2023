@@ -70,6 +70,7 @@ Setting up the reference app is easy, just follow these steps:
     $ yarn install
     ```
 3. Create a `.env` file:
+For judges, I have already added .env file in the repo
     ```
     $ cp .env.example .env
     ```

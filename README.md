@@ -193,7 +193,7 @@ NFTs and VCs include leveraging the benefits of the digital world and providing 
 
 NFTs verify ownership of an object, while VCs uniquely identify an entity. VCs can extend usability beyond a specific network.
 
-Why VCs are better:
+# Why VCs are better:
 
 - VCs provide tamper-evident credentials that can be cryptographically verified, ensuring authenticity and preventing fraud.
 

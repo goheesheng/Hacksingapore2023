@@ -205,6 +205,6 @@ NFTs verify ownership of an object, while VCs uniquely identify an entity. VCs c
 
 - VCs can be implemented on different networks, including blockchain and Distributed Ledger Transaction (DLT) networks, providing interoperability and adaptability.
 
-```
+`
 Overall, VCs offer a more robust and versatile solution for identity verification and credential management compared to NFTs, making them a better choice in many contexts.
-```
+`
